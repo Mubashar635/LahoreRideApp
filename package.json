@@ -1,0 +1,22 @@
+{
+  "name": "ride-booking",
+  "private": true,
+  "description": "Simplified ride-booking app for Lahore (take-home assessment)",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "db:migrate": "npm run db:migrate -w apps/api",
+    "db:seed": "npm run db:seed -w apps/api",
+    "dev:api": "npm run dev -w apps/api",
+    "dev:web": "npm run dev -w apps/web",
+    "test": "npm run test:api && npm run test:web",
+    "test:api": "npm test -w apps/api",
+    "test:web": "npm test -w apps/web",
+    "test:e2e": "npm run test:e2e -w apps/web",
+    "typecheck": "npm run typecheck -w apps/api && npm run typecheck -w apps/web"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
