@@ -201,13 +201,11 @@ These are deliberate scope cuts. [ARCHITECTURE.md §8](docs/ARCHITECTURE.md#8-th
 
 ## AI tools disclosure
 
-<!-- DRAFT: please edit this section in your own words before submitting. -->
-
-This project was built with **Claude Code** (Anthropic's AI coding assistant, model Claude Opus 5.5) as a pair programmer. I directed the work phase by phase (schema → API → backend tests → frontend → frontend and E2E tests → docs), reviewed the output, and made the design decisions.
+This project was built with **Claude Code** (Anthropic's AI coding assistant, model Claude Opus 5.5), which wrote most of the code and documentation. I directed the work phase by phase (schema → API → backend tests → frontend → frontend and E2E tests → docs), reviewed each phase and the design choices behind it before approving the next, and ran it against my local PostgreSQL.
 
 How the output was verified:
 - **Automated tests:** 111 tests (75 API, 26 web component, 10 Playwright E2E across desktop and mobile), all passing, plus TypeScript type-checking for both apps.
 - **Mutation checks:** critical safeguards were deliberately broken (ride locking, idempotency handling, retry-key logic) to confirm that the tests fail when the code is wrong.
 - **Database-level checks:** invalid rows were inserted directly with SQL to confirm the constraints reject them.
 - **Manual testing:** smoke-tested every endpoint against the running API, and reviewed screenshots of the UI on desktop and mobile; a mobile layout issue found this way was fixed.
-- **Code review:** <!-- describe what you personally reviewed or changed -->
+- **Fresh-clone check:** before submitting, the repository was cloned from GitHub into a new folder and set up against a brand-new database by following this README (install, migrate, seed). All 111 tests passed, and the booking, cancellation, error and no-driver flows were walked through in the browser.
